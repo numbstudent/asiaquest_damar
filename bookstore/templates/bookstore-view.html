@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+{% load humanize %}
+{% load i18n %}
+{% load l10n %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Edit Buku</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <table>
+            <tr>
+                <th>Judul Buku</th>
+                <th>Description</th>
+                <th>Kategori</th>
+                <th>Keywords</th>
+                <th>Harga</th>
+                <th>Stok</th>
+                <th>Penerbit</th>
+            </tr>
+            {% for book in booklist %}
+            <tr>
+                <td>{{book.title}}</td>
+                <td>{{book.description|truncatechars_html:101}}</td>
+                <td>{{book.get_categories_display}}</td>
+                <td>{{book.keywords}}</td>
+                <td>
+                    {% language 'de' %}
+                    Rp {{ book.price|floatformat:2|intcomma }}
+                    {% endlanguage %}
+                </td>
+                <td>{{book.stock}}</td>
+                <td>{{book.publisher}}</td>
+                </td>
+            </tr>
+            {% endfor %}
+        </table>
+    </div>
+</div>
+{% endblock%}

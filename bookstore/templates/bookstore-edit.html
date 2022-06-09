@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="row">
+    <div class="col-lg-12">
+        <h2>Edit Buku</h2>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12">
+        <form action="edit/{{id}}" method="post">
+            {% csrf_token %}
+            {{form|crispy}}
+            <input type="submit" value="Edit">
+        </form>
+    </div>
+</div>
+{% endblock%}
